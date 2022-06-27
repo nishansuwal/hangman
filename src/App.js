@@ -26,10 +26,14 @@ import "./App.css";
 //   "violent",
 // ];
 let selectedWord = data[Math.floor(Math.random() * data.length)];
+const splitedWord = selectedWord.split("");
+const randomLetter = Math.floor(Math.random() * splitedWord.length);
 
 function App() {
   const [playable, setPlayable] = useState(true);
-  const [correctLetters, setCorrectLetters] = useState([]);
+  const [correctLetters, setCorrectLetters] = useState([
+    splitedWord[randomLetter],
+  ]);
   const [wrongLetters, setWrongLetters] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
 
@@ -61,11 +65,15 @@ function App() {
   function playAgain() {
     setPlayable(true);
 
-    // Empty Arrays
-    setCorrectLetters([]);
-    setWrongLetters([]);
-
     const random = Math.floor(Math.random() * data.length);
+
+    const word = data[random];
+    const splitedWord = word.split("");
+    const randomLetter = Math.floor(Math.random() * splitedWord.length);
+
+    // Empty Arrays
+    setCorrectLetters([splitedWord[randomLetter]]);
+    setWrongLetters([]);
     selectedWord = data[random];
   }
 

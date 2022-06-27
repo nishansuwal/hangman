@@ -1,16 +1,30 @@
+// const fs = require("node:fs");
+// let requiredData = ``;
+
+// const data = fs.readFileSync("./words.txt", { encoding: "utf8", flag: "r" });
+
+// const splitedData = data.split(",");
+
+// for (let i = 0; i < splitedData.length; i++) {
+//   if (!splitedData[i].length <= 4) {
+//     requiredData += `${splitedData[i]}",`;
+//   }
+// }
+
+// console.log(requiredData);
+
+// fs.writeFileSync("newData.js", requiredData);
+
 const fs = require("node:fs");
-let requiredData = ``;
+const data = require("./words");
 
-const data = fs.readFileSync("./words.txt", { encoding: "utf8", flag: "r" });
+let words = [];
 
-const splitedData = data.split(",");
-
-for (let i = 0; i < splitedData.length; i++) {
-  if (!splitedData[i].length <= 4) {
-    requiredData += `${splitedData[i]}",`;
+data.forEach((word) => {
+  if (word.length < 5) {
+    return;
   }
-}
+  words.push(word);
+});
 
-console.log(requiredData);
-
-fs.writeFileSync("newData.js", requiredData);
+fs.writeFileSync("newData.txt", JSON.stringify(words));
