@@ -21,10 +21,11 @@ const data = require("./words");
 let words = [];
 
 data.forEach((word) => {
-  if (word.length < 5) {
+  if (word.length < 6) {
     return;
+  } else {
+    words.push(word);
   }
-  words.push(word);
 });
 
 fs.writeFileSync("newData.txt", JSON.stringify(words));
